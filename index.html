@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☀️ 線上天氣預報遊戲</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>☀️ 線上天氣預報遊戲</h1>
+      <p class="subtitle">挑戰你的天氣預測能力！</p>
+    </header>
+
+    <!-- 城市選擇 -->
+    <section id="city-select-section">
+      <h2>🌍 選擇城市</h2>
+      <div class="city-grid">
+        <button class="city-btn" data-city="taipei">台北</button>
+        <button class="city-btn" data-city="taichung">台中</button>
+        <button class="city-btn" data-city="kaohsiung">高雄</button>
+        <button class="city-btn" data-city="tainan">台南</button>
+        <button class="city-btn" data-city="keelung">基隆</button>
+        <button class="city-btn" data-city="hsinchu">新竹</button>
+        <button class="city-btn" data-city="changhua">彰化</button>
+        <button class="city-btn" data-city="chiayi">嘉義</button>
+        <button class="city-btn" data-city="yilan">宜蘭</button>
+        <button class="city-btn" data-city="pingtung">屏東</button>
+        <button class="city-btn" data-city="taitung">台東</button>
+        <button class="city-btn" data-city="hualien">花蓮</button>
+      </div>
+    </section>
+
+    <!-- 遊戲區域 -->
+    <section id="game-section" class="hidden">
+      <div class="game-header">
+        <div class="current-city">
+          <span id="city-name">台北</span>
+          <span id="city-emoji">🌧️</span>
+        </div>
+        <div class="score-display">
+          <span>💰 積分: <strong id="score">0</strong></span>
+          <span>🔥 連勝: <strong id="streak">0</strong></span>
+          <span>📊 回合: <strong id="round">1</strong>/10</span>
+        </div>
+      </div>
+
+      <!-- 天氣題目 -->
+      <div class="question-card">
+        <div class="question-type" id="question-type">猜溫度</div>
+        <div class="question-text" id="question-text">台北今天的天氣預測最高溫度是多少？</div>
+        
+        <div class="answer-area" id="answer-area">
+          <!-- 溫度答案 -->
+          <div id="temp-answer" class="temp-slider hidden">
+            <input type="range" id="temp-slider" min="15" max="40" value="28">
+            <div class="temp-display">
+              <span id="temp-value">28</span>°C
+            </div>
+            <div class="range-labels">
+              <span>15°C</span>
+              <span>40°C</span>
+            </div>
+          </div>
+          
+          <!-- 天氣答案 -->
+          <div id="weather-answer" class="weather-buttons hidden">
+            <button class="weather-btn" data-weather="sunny">☀️ 晴天</button>
+            <button class="weather-btn" data-weather="cloudy">⛅ 多雲</button>
+            <button class="weather-btn" data-weather="rainy">🌧️ 雨天</button>
+            <button class="weather-btn" data-weather="stormy">⛈️ 暴風雨</button>
+            <button class="weather-btn" data-weather="snowy">❄️ 下雪</button>
+          </div>
+        </div>
+
+        <button id="submit-btn" class="submit-btn">確認答案</button>
+      </div>
+
+      <!-- 提示區 -->
+      <div class="hint-section">
+        <button id="hint-btn" class="hint-btn">💡 提示 (扣50分)</button>
+        <div id="hint-text" class="hint-text hidden"></div>
+      </div>
+    </section>
+
+    <!-- 結果區 -->
+    <section id="result-section" class="hidden">
+      <div class="result-card">
+        <div id="result-emoji" class="result-emoji">🎉</div>
+        <div id="result-message" class="result-message"></div>
+        <div id="result-detail" class="result-detail"></div>
+        <button id="next-btn" class="next-btn">下一題 →</button>
+      </div>
+    </section>
+
+    <!-- 最終排行榜 -->
+    <section id="final-section" class="hidden">
+      <div class="final-card">
+        <h2>🏆 遊戲結束！</h2>
+        <div class="final-score">
+          <div class="score-item">
+            <span>最終積分</span>
+            <strong id="final-score">0</strong>
+          </div>
+          <div class="score-item">
+            <span>答對題數</span>
+            <strong id="final-correct">0</strong>/10
+          </div>
+          <div class="score-item">
+            <span>最高連勝</span>
+            <strong id="final-streak">0</strong>
+          </div>
+        </div>
+        <div class="leaderboard">
+          <h3>📊 排行榜</h3>
+          <div id="leaderboard-list"></div>
+        </div>
+        <div class="final-actions">
+          <button id="restart-btn" class="restart-btn">重新開始</button>
+          <button id="save-score-btn" class="save-btn">儲存分數</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 排行榜按鈕 -->
+    <button id="show-leaderboard-btn" class="leaderboard-toggle">📊 排行榜</button>
+    <div id="leaderboard-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>📊 排行榜</h3>
+        <div id="modal-leaderboard-list"></div>
+        <button id="close-modal-btn" class="close-btn">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
